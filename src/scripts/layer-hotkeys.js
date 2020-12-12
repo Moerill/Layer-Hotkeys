@@ -60,12 +60,12 @@ export default function() {
 
 
 
-    Hooks.once('ready', () => {
+    Hooks.once('init', () => {
         window.addEventListener('keydown', ev => {
             if (ev.repeat)
                 return true;
 
-            if (document.activeElement.tagName !== 'BODY' ||  canvas.activeLayer.controlled.length)
+            if (document.activeElement.tagName !== 'BODY')
                 return true;
 
             for (let control of ui.controls.controls) {
@@ -77,7 +77,21 @@ export default function() {
                 if (window.Azzu.SettingsTypes.KeyBinding.eventIsForBinding(ev, key)) {
                     ev.preventDefault();
                     ev.stopPropagation();
-                    canvas.getLayer(control.layer).activate()
+                    canvas.getLayer(control.layer).activate();
+
+
+                    let keyUpStopper = (ev) => {
+                        const key = window.Azzu.SettingsTypes.KeyBinding.parse(CONFIG["layer-hotkeys"].layer[control.name]);
+                        const isKey = window.Azzu.SettingsTypes.KeyBinding.eventIsForBinding(ev, key);
+                        if (isKey) {
+                            ev.preventDefault();
+                            ev.stopPropagation();
+                            window.removeEventListener('keyup', keyUpStopper);
+                            return false;
+                        }
+                    }
+                    window.addEventListener('keyup', keyUpStopper);
+
                     return false;
                 }
             }
@@ -92,12 +106,16 @@ export default function() {
                     key.ctrlKey = true;
                     activateTool = activateTool || window.Azzu.SettingsTypes.KeyBinding.eventIsForBinding(ev, key);
                 }
-
                 if (activateTool) {
                     ev.preventDefault();
                     ev.stopPropagation();
-                    activeControl.activeTool = tools[i].name
-                    ui.controls.render();
+
+                    if (tools[i].onClick)
+                        tools[i].onClick();
+                    else {
+                        activeControl.activeTool = tools[i].name
+                        ui.controls.render();
+                    }
                     // Change preview color for walls when chaining walls
                     if (activeControl.name === 'walls') {
                         let layer = canvas.activeLayer;
@@ -109,6 +127,18 @@ export default function() {
                             wall.data = wall_data;
                         }
                     }
+
+                    let keyUpStopper = (ev) => {
+                        const key = window.Azzu.SettingsTypes.KeyBinding.parse(CONFIG["layer-hotkeys"].tool[i+1]); 
+                        const isKey = window.Azzu.SettingsTypes.KeyBinding.eventIsForBinding(ev, key);
+                        if (isKey) {
+                            ev.preventDefault();
+                            ev.stopPropagation();
+                            window.removeEventListener(keyUpStopper);
+                            return false;
+                        }
+                    }
+                    window.addEventListener('keyup', keyUpStopper);
 
                     return false;
                 }
