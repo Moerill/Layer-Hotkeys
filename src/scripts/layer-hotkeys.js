@@ -150,21 +150,24 @@ export default function() {
     Hooks.on('renderSceneControls', (app, html, data) => {
         let scene_control = html.children('li.scene-control');
         let layerKeys = {};
-        for (let [key, value] of Object.entries(CONFIG["layer-hotkeys"].layer))
+        let config = CONFIG["layer-hotkeys"];
+        if (config === undefined) return;
+
+        for (let [key, value] of Object.entries(config.layer))
             layerKeys[value] = key;
         let toolKeys = {};
-        for (let [key, value] of Object.entries(CONFIG["layer-hotkeys"].tool))
+        for (let [key, value] of Object.entries(config.tool))
             toolKeys[value] = key;
 
         for (let i = 0; i < scene_control.length; i++) {
             const li = scene_control[i];
             let title = li.getAttribute("title");
-            let key = CONFIG["layer-hotkeys"].layer[li.getAttribute("data-control")];
+            let key = config.layer[li.getAttribute("data-control")];
             if (key !== undefined)
                 li.title += " [" + key.toUpperCase() + "]";
             let ctrls = li.getElementsByClassName('control-tool');
             for (let j = 0; j < ctrls.length; j++) {
-                let title = ctrls[j].title + " [" + CONFIG["layer-hotkeys"].tool[j+1] + "]";
+                let title = ctrls[j].title + " [" + config.tool[j+1] + "]";
                 ctrls[j].title = title;
             }
         }
