@@ -1,4 +1,4 @@
-# v1.7.2
+# v1.8.0
 
 * fixed error showing up, thanks to GitHub user @DenninDalke!
 * now allows to use the hotkeys, even when an actor is selected (this may be a controversial change..)
