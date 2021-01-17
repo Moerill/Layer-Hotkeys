@@ -85,7 +85,7 @@ export default function () {
           const key = window.Azzu.SettingsTypes.KeyBinding.parse(
             CONFIG["layer-hotkeys"].layer[control.name]
           );
-          if (window.Azzu.SettingsTypes.KeyBinding.eventIsForBinding(ev, key)) {
+          if (key && window.Azzu.SettingsTypes.KeyBinding.eventIsForBinding(ev, key)) {
             ev.preventDefault();
             ev.stopPropagation();
             canvas.getLayer(control.layer).activate();
@@ -197,7 +197,7 @@ export default function () {
       const li = scene_control[i];
       let title = li.getAttribute("title");
       let key = config.layer[li.getAttribute("data-control")];
-      if (key !== undefined && key !== null) li.title += " [" + key.toUpperCase() + "]";
+      if (key) li.title += " [" + key.toUpperCase() + "]";
       let ctrls = li.getElementsByClassName("control-tool");
       for (let j = 0; j < ctrls.length; j++) {
         let title = ctrls[j].title + " [" + config.tool[j + 1] + "]";
