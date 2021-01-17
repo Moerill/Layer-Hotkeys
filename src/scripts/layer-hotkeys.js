@@ -197,7 +197,7 @@ export default function () {
       const li = scene_control[i];
       let title = li.getAttribute("title");
       let key = config.layer[li.getAttribute("data-control")];
-      if (key !== undefined) li.title += " [" + key.toUpperCase() + "]";
+      if (key !== undefined && key !== null) li.title += " [" + key.toUpperCase() + "]";
       let ctrls = li.getElementsByClassName("control-tool");
       for (let j = 0; j < ctrls.length; j++) {
         let title = ctrls[j].title + " [" + config.tool[j + 1] + "]";
