@@ -4,6 +4,10 @@
 This tool adds customizable hotkeys to switch between layers and tools.
 
 # Important
+## Maintenance Mode  
+This repository is no longer receiving active attention. I view the Module to be in a stable and feature-complete state, and will be focusing my efforts on other modules. PR's are welcome, and I'll try to investigate bugs and keep the Module up to date with Foundry in a timely manner.  
+
+
 ## FVTT Version compatibility
 My focus is the FVTTs stable branch. I will neither promise nor prioritise updates for FVTTs beta or alpha branches! Feel free to report a bug so i know whats coming, but don't expect a fix before a stable FVTT update.
 
