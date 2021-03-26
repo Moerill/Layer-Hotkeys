@@ -5,7 +5,8 @@ This tool adds customizable hotkeys to switch between layers and tools.
 
 # Important
 ## Maintenance Mode  
-This repository is no longer receiving active attention. I view the Module to be in a stable and feature-complete state, and will be focusing my efforts on other modules. PR's are welcome, and I'll try to investigate bugs and keep the Module up to date with Foundry in a timely manner.  
+This repository is no longer receiving active attention. In my opinion this module is complete and stable, and i'll be focusing my efforts on other modules/stuff. PR's are welcome and i'll try to investigate bugs and keep this module up to date with Foundry, when i find the time to do so.  
+That said, feel free to keep suggesting features, if i find something interesting i may end up implementing it.
 
 
 ## FVTT Version compatibility
