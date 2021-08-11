@@ -88,7 +88,8 @@ export default function () {
           if (window.Azzu.SettingsTypes.KeyBinding.eventIsForBinding(ev, key)) {
             ev.preventDefault();
             ev.stopPropagation();
-            canvas.getLayer(control.layer).activate();
+            let modifiedLayer = control.layer.charAt(0).toUpperCase() + control.layer.slice(1)
+            canvas.getLayer(modifiedLayer).activate();
 
             let keyUpStopper = (ev) => {
               const key = window.Azzu.SettingsTypes.KeyBinding.parse(
