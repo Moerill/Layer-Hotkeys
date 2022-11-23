@@ -8,7 +8,7 @@
 	"author": "Moerill",
 	"license": "LGPL-3.0-or-later",
 	"devDependencies": {
-		"browser-sync": "^2.26.7",
+		"browser-sync": "^2.27.10",
 		"chalk": "^4.0.0",
 		"clean-webpack-plugin": "^3.0.0",
 		"foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types",
